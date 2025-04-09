@@ -22,7 +22,6 @@ const Hero = () => {
       id="hero"
       className="relative h-screen bg-[#0e111d] text-white flex items-center justify-center overflow-hidden"
     >
-      {/* Logo w tle */}
       <div className="absolute inset-0 flex justify-center items-center">
         <img
           src={logo}
@@ -32,7 +31,6 @@ const Hero = () => {
         />
       </div>
 
-      {/* Tekst */}
       <div ref={textRef} className="relative text-center max-w-2xl z-10">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
           MVP Detailing
@@ -45,7 +43,7 @@ const Hero = () => {
           to="afterhero"
           smooth
           duration={600}
-          className="inline-block bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 font-medium rounded-md transition"
+          className="cursor-pointer inline-block bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 font-medium rounded-md transition"
         >
           Umów wizytę
         </ScrollLink>
