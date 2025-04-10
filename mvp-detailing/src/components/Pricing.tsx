@@ -17,24 +17,22 @@ const services = [
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
             Cennik usług
           </h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full table-auto border-collapse rounded-xl overflow-hidden shadow-md">
+          <div className="overflow-x-auto px-2">
+            <table className="min-w-full table-auto border-collapse rounded-xl overflow-hidden shadow-md text-sm sm:text-base">
               <thead>
                 <tr className="bg-sky-500 text-white text-left">
-                  <th className="py-4 px-6 text-lg font-medium">Usługa</th>
-                  <th className="py-4 px-6 text-lg font-medium text-right">Cena</th>
+                  <th className="py-3 px-4 sm:py-4 sm:px-6 font-medium">Usługa</th>
+                  <th className="py-3 px-4 sm:py-4 sm:px-6 font-medium text-right">Cena</th>
                 </tr>
               </thead>
               <tbody>
                 {services.map((service, index) => (
                   <tr
                     key={index}
-                    className={
-                      index % 2 === 0 ? "bg-white/10 text-white" : "bg-white/5 text-slate-200"
-                    }
+                    className={index % 2 === 0 ? "bg-white/10 text-white" : "bg-white/5 text-slate-200"}
                   >
-                    <td className="py-4 px-6 text-left">{service.name}</td>
-                    <td className="py-4 px-6 text-right">{service.price}</td>
+                    <td className="py-3 px-4 sm:py-4 sm:px-6 text-left">{service.name}</td>
+                    <td className="py-3 px-4 sm:py-4 sm:px-6 text-right">{service.price}</td>
                   </tr>
                 ))}
               </tbody>

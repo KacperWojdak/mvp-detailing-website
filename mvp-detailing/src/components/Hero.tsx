@@ -31,23 +31,23 @@ const Hero = () => {
         />
       </div>
 
-      <div ref={textRef} className="relative text-center max-w-2xl z-10">
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
+      <div ref={textRef} className="relative text-center px-4 max-w-2xl z-10">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-6">
           MVP Detailing
         </h1>
-        <p className="text-lg md:text-xl text-slate-300 mb-8">
+        <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 px-2">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
-        <ScrollLink
-          to="afterhero"
-          smooth
-          duration={600}
-          className="cursor-pointer inline-block bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 font-medium rounded-md transition"
-        >
-          Umów wizytę
-        </ScrollLink>
-      </div>
+          <ScrollLink
+            to="afterhero"
+            smooth
+            duration={600}
+            className="cursor-pointer inline-block bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 sm:px-8 sm:py-3 font-medium rounded-md transition text-sm sm:text-base"
+          >
+            Umów wizytę
+          </ScrollLink>
+        </div>
     </section>
   );
 };

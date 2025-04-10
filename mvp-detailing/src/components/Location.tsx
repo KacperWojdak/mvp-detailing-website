@@ -20,15 +20,12 @@ const Location = () => {
     >
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">Nasza lokalizacja</h2>
-        <div className="w-full h-[400px] rounded-xl overflow-hidden shadow-lg">
+        <div className="w-full h-[300px] sm:h-[350px] md:h-[400px] rounded-xl overflow-hidden shadow-lg mx-2 sm:mx-0">
           <MapContainer 
             center={position} 
             zoom={15} 
             scrollWheelZoom={true}
             className="w-full h-full z-10"
-            minZoom={14}
-            maxZoom={18}
-            style={{ touchAction: 'none' }}
           >
             <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

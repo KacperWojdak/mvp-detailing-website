@@ -41,19 +41,15 @@ import {
       >
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">Nasze usługi</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                className="bg-white/10 backdrop-blur-md rounded-xl shadow-md p-6 hover:shadow-lg transform transition hover:-translate-y-1"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 1.7, delay: index * 0.3 }}
+                className="bg-white/10 backdrop-blur-md rounded-xl shadow-md p-4 sm:p-6 hover:shadow-lg transform transition hover:-translate-y-1"
               >
-                <div className="mb-4 flex justify-center">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{service.title}</h3>
-                <p className="text-slate-200 text-sm leading-relaxed">{service.description}</p>
+                <div className="mb-3 sm:mb-4 flex justify-center">{service.icon}</div>
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">{service.title}</h3>
+                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
