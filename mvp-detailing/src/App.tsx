@@ -6,6 +6,7 @@ import Services from "./components/Services";
 import Pricing from "./components/Pricing";
 import Location from "./components/Location";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
       <Pricing />
       <Location />
       <Contact />
+      <Footer />
     </>
   );
 }
