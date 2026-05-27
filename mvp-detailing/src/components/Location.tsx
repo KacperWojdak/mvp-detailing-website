@@ -3,56 +3,146 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import { IoMdPin } from "react-icons/io";
+import { MapPin, Clock, Phone, Navigation } from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-const position: [number, number] = [51.217739, 16.075089];
+const position: [number, number] = [51.162510, 16.048417];
 
 const customIcon = new L.DivIcon({
-  html: renderToStaticMarkup(<IoMdPin className="text-red-500 text-4xl" />),
+  html: renderToStaticMarkup(<IoMdPin className="text-sky-400 text-4xl" />),
   iconSize: [40, 50],
   className: "custom-pin",
 });
 
 const Location = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
     <section
       id="location"
-      className="bg-gradient-to-b from-[#0e111d] to-[#141829] py-24 px-6 md:px-12"
+      className="bg-gradient-to-b from-[#111523] via-[#0e111d] to-[#111523] py-24 px-6 md:px-12"
     >
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">Nasza lokalizacja</h2>
-        <div className="w-full h-[300px] sm:h-[350px] md:h-[400px] rounded-xl overflow-hidden shadow-lg mx-2 sm:mx-0">
-          <MapContainer 
-            center={position} 
-            zoom={15} 
-            scrollWheelZoom={true}
-            className="w-full h-full z-10"
+      <div className="max-w-6xl mx-auto">
+
+        {/* Badge */}
+        <div className="flex flex-col items-center mb-12 gap-3">
+          <div className="inline-flex items-center gap-2">
+            <span className="h-px w-5 bg-sky-400" />
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-sky-400">
+              Lokalizacja
+            </span>
+            <span className="h-px w-5 bg-sky-400" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
+            Nasza lokalizacja
+          </h2>
+        </div>
+
+        <div ref={ref} className="grid md:grid-cols-2 gap-6 items-stretch">
+
+          {/* Karta informacyjna */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="rounded-2xl p-7 flex flex-col gap-6 justify-between"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
           >
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position} icon={customIcon}>
-                <Popup className="custom-popup">
-                    <div className="space-y-1">
+            <div className="space-y-5">
+              {/* Adres */}
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}
+                >
+                  <MapPin className="w-4 h-4 text-sky-400" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 mb-1">Adres</p>
+                  <p className="text-slate-200 font-medium">Wilczyce 45</p>
+                  <p className="text-slate-400 text-sm">59-223</p>
+                </div>
+              </div>
+
+              {/* Godziny */}
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}
+                >
+                  <Clock className="w-4 h-4 text-sky-400" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 mb-1">Godziny pracy</p>
+                  <p className="text-slate-200 font-medium">Pon – Pt: 8:00 – 18:00</p>
+                  <p className="text-slate-400 text-sm">Sob: 9:00 – 15:00</p>
+                </div>
+              </div>
+
+              {/* Telefon */}
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}
+                >
+                  <Phone className="w-4 h-4 text-sky-400" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold tracking-widets uppercase text-slate-500 mb-1">Telefon</p>
+                  <p className="text-slate-200 font-medium">+48 604 589 815</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Przycisk Google Maps */}
+            <a
+              href={`https://www.google.com/maps?daddr=${position[0]},${position[1]}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-[14px] text-sky-400 transition-all duration-200 hover:bg-sky-400 hover:text-[#0e111d]"
+              style={{ border: "1px solid rgba(56,189,248,0.3)" }}
+            >
+              <Navigation className="w-4 h-4" />
+              Otwórz w Google Maps
+            </a>
+          </motion.div>
+
+          {/* Mapa */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
+            className="rounded-2xl overflow-hidden"
+            style={{ border: "1px solid rgba(255,255,255,0.08)", minHeight: "340px" }}
+          >
+            <MapContainer
+              center={position}
+              zoom={15}
+              scrollWheelZoom={false}
+              className="w-full h-full"
+              style={{ minHeight: "340px", zIndex: 0 }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+              />
+              <Marker position={position} icon={customIcon}>
+                <Popup>
+                  <div className="space-y-1">
                     <h3 className="font-bold">MVP Detailing</h3>
-                    <p>Gniewomirowice 320C<br />59-222</p>
-                    <a
-                        href={`https://www.google.com/maps?daddr=${position[0]},${position[1]}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block mt-2 text-blue-600 hover:underline text-sm"
-                    >
-                        <span className="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                        </svg>
-                        Otwórz w Mapach Google ©
-                        </span>
-                    </a>
-                    </div>
+                    <p>Wilczyce 45<br />59-223</p>
+                  </div>
                 </Popup>
-            </Marker>
-          </MapContainer>
+              </Marker>
+            </MapContainer>
+          </motion.div>
+
         </div>
       </div>
     </section>

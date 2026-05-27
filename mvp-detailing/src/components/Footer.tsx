@@ -15,13 +15,13 @@ const Footer = () => {
           <h4 className="text-white text-lg font-medium mb-4">Kontakt</h4>
           <ul className="space-y-2 text-sm mx-auto text-center">
             <li className="flex items-center justify-center gap-2">
-              <FaPhoneAlt className="text-sky-500" /> +48 511 751 029
+              <FaPhoneAlt className="text-sky-500" /> +48 604 589 815
             </li>
             <li className="flex items-center justify-center gap-2">
               <FaEnvelope className="text-sky-500" /> infomvpdetailing@gmail.com
             </li>
             <li className="flex items-center justify-center gap-2">
-              <FaMapMarkerAlt className="text-sky-500" /> Gniewomirowice 320C, 59-222
+              <FaMapMarkerAlt className="text-sky-500" /> Wilczyce 45, 59-223
             </li>
           </ul>
         </div>
