@@ -7,6 +7,7 @@ import Pricing from "./components/Pricing";
 import Location from "./components/Location";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
       <Location />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </>
   );
 }
