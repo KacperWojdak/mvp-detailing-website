@@ -80,5 +80,6 @@ Licencja MIT – szczegóły w pliku [LICENSE](LICENSE).
   <img src="mvp-detailing/src/screenshots/ss4.jpg" width="32%" />
   <img src="mvp-detailing/src/screenshots/ss5.jpg" width="32%" />
   <img src="mvp-detailing/src/screenshots/ss6.jpg" width="32%" />
+  <img src="mvp-detailing/src/screenshots/ss7.jpg" width="32%" />
 </p>
 
