@@ -1,160 +1,115 @@
 import { useEffect, useState } from "react";
-import logo from "../assets/mvplogo.webp";
 import { Link as ScrollLink } from "react-scroll";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const NAV_LINKS = [
+  { to: "aboutus", label: "O nas" },
+  { to: "services", label: "Usługi" },
+  { to: "pricing", label: "Cennik" },
+  { to: "location", label: "Mapa" },
+  { to: "contact", label: "Kontakt" },
+];
+
 const Navbar = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isScrolled = scrollY > 100;
-  const background = isScrolled ? "bg-white/90 shadow" : "bg-transparent";
-  const textColor = isScrolled ? "text-gray-800" : "text-white";
-  const showBrand = isScrolled;
-  const mobileMenuBg = isScrolled ? "bg-white/95" : "bg-[#0e111d]/95";
-  const mobileMenuText = isScrolled ? "text-gray-800" : "text-white";
-
-  const menuVariants = {
-    hidden: { y: "-100%", opacity: 0 },
-    visible: { 
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "tween",
-        ease: "easeOut",
-        duration: 0.3
-      }
-    },
-    exit: { 
-      y: "-100%",
-      opacity: 0,
-      transition: {
-        ease: "easeIn",
-        duration: 0.2
-      }
-    }
-  };
-
-  const iconVariants = {
-    open: { rotate: 180 },
-    closed: { rotate: 0 }
-  };
+  const close = () => setOpen(false);
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${background}`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#080a12]/90 backdrop-blur-lg border-b border-white/[0.06] shadow-lg shadow-black/20"
+          : "bg-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
-        <ScrollLink 
-          to="hero" 
-          smooth 
-          duration={600} 
-          className="cursor-pointer flex items-center gap-3"
-          onClick={() => setMobileMenuOpen(false)}
-        >
-          <img
-            src={logo}
-            alt="MVP Detailing"
-            className={`transition-all duration-300 ${
-              showBrand ? "h-10" : "h-0"
-            } w-auto overflow-hidden`}
-          />
-          <span className={`transition-all duration-300 ${
-              showBrand ? "opacity-100" : "opacity-0"
-            } text-lg font-semibold tracking-wider ${textColor}`}>
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4">
+        {/* Brand */}
+        <ScrollLink to="hero" smooth duration={600} className="cursor-pointer flex items-center gap-2.5 select-none" onClick={close}>
+          <span className="h-2 w-2 rounded-full bg-sky-400" />
+          <span className="text-[14px] font-bold tracking-[0.1em] uppercase text-slate-100">
             MVP Detailing
           </span>
         </ScrollLink>
 
-        {/* Desktop Navigation */}
-        <nav className={`hidden md:flex items-center gap-6 font-medium ${textColor}`}>
-          <ScrollLink to="aboutus" smooth duration={600} className="hover:text-sky-500 cursor-pointer transition">O nas</ScrollLink>
-          <ScrollLink to="services" smooth duration={600} className="hover:text-sky-500 cursor-pointer transition">Usługi</ScrollLink>
-          <ScrollLink to="pricing" smooth duration={600} className="hover:text-sky-500 cursor-pointer transition">Cennik</ScrollLink>
-          <ScrollLink to="location" smooth duration={600} className="hover:text-sky-500 cursor-pointer transition">Mapa</ScrollLink>
-          <ScrollLink to="contact" smooth duration={600} className="hover:text-sky-500 cursor-pointer transition">Kontakt</ScrollLink>
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-7">
+          {NAV_LINKS.map((l) => (
+            <ScrollLink
+              key={l.to}
+              to={l.to}
+              smooth
+              duration={600}
+              offset={-60}
+              className="text-[13px] font-medium tracking-wide text-slate-400 hover:text-sky-400 cursor-pointer transition-colors duration-200"
+            >
+              {l.label}
+            </ScrollLink>
+          ))}
         </nav>
 
-        {/* Mobile Menu Button */}
-        <motion.button 
-          className="md:hidden p-2 focus:outline-none"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          animate={mobileMenuOpen ? "open" : "closed"}
-          variants={iconVariants}
-          transition={{ duration: 0.3 }}
+        {/* CTA */}
+        <ScrollLink
+          to="contact"
+          smooth
+          duration={600}
+          className="hidden md:inline-block cursor-pointer bg-sky-400 hover:bg-sky-300 text-[#080a12] text-[12px] font-bold tracking-[0.08em] uppercase px-5 py-2 rounded-md transition-all duration-200 hover:-translate-y-0.5 select-none"
         >
-          {mobileMenuOpen ? (
-            <X className={`w-6 h-6 ${textColor}`} />
-          ) : (
-            <Menu className={`w-6 h-6 ${textColor}`} />
-          )}
-        </motion.button>
+          Umów wizytę
+        </ScrollLink>
+
+        {/* Mobile toggle */}
+        <button
+          className="md:hidden p-2 text-slate-300 hover:text-sky-400 transition-colors"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Zamknij menu" : "Otwórz menu"}
+        >
+          <motion.div animate={open ? "open" : "closed"} variants={{ open: { rotate: 90 }, closed: { rotate: 0 } }} transition={{ duration: 0.25 }}>
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </motion.div>
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={menuVariants}
-            className={`md:hidden ${mobileMenuBg} backdrop-blur-md w-full absolute top-full left-0 shadow-lg overflow-hidden`}
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-[#0a0d18]/95 backdrop-blur-xl border-t border-white/[0.06]"
           >
-            <nav className="flex flex-col items-center py-4 gap-1">
-              <ScrollLink 
-                to="aboutus" 
-                smooth 
-                duration={600} 
-                className={`w-full text-center py-3 px-4 ${mobileMenuText} hover:bg-white/10 transition`}
-                onClick={() => setMobileMenuOpen(false)}
+            <nav className="flex flex-col px-5 py-3 gap-1">
+              {NAV_LINKS.map((l) => (
+                <ScrollLink
+                  key={l.to}
+                  to={l.to}
+                  smooth
+                  duration={600}
+                  offset={-60}
+                  onClick={close}
+                  className="py-3 text-[14px] font-medium text-slate-300 hover:text-sky-400 transition-colors cursor-pointer border-b border-white/[0.05] last:border-none"
+                >
+                  {l.label}
+                </ScrollLink>
+              ))}
+              <ScrollLink
+                to="contact"
+                smooth
+                duration={600}
+                onClick={close}
+                className="mt-3 mb-1 text-center cursor-pointer bg-sky-400 hover:bg-sky-300 text-[#080a12] text-[13px] font-bold tracking-wide uppercase py-3 rounded-lg transition-colors select-none"
               >
-                O nas
-              </ScrollLink>
-              <ScrollLink 
-                to="services" 
-                smooth 
-                duration={600} 
-                className={`w-full text-center py-3 px-4 ${mobileMenuText} hover:bg-white/10 transition`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Usługi
-              </ScrollLink>
-              <ScrollLink 
-                to="pricing" 
-                smooth 
-                duration={600} 
-                className={`w-full text-center py-3 px-4 ${mobileMenuText} hover:bg-white/10 transition`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Cennik
-              </ScrollLink>
-              <ScrollLink 
-                to="location" 
-                smooth 
-                duration={600} 
-                className={`w-full text-center py-3 px-4 ${mobileMenuText} hover:bg-white/10 transition`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Mapa
-              </ScrollLink>
-              <ScrollLink 
-                to="contact" 
-                smooth 
-                duration={600} 
-                className={`w-full text-center py-3 px-4 ${mobileMenuText} hover:bg-white/10 transition`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Kontakt
+                Umów wizytę
               </ScrollLink>
             </nav>
           </motion.div>
