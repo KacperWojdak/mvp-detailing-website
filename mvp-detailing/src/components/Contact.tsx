@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion, useInView } from "framer-motion";
+import { usePricingStore } from "../store/usePricingStore";
+
+const PACKAGES = ["", "Basic", "Premium", "Elite", "Wycena indywidualna"];
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -10,6 +13,8 @@ const Contact = () => {
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState("");
 
+  const { selectedPackage, setSelectedPackage } = usePricingStore();
+
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
@@ -17,26 +22,10 @@ const Contact = () => {
 
     const form = formRef.current!;
 
-    if (!form.from_name.value?.trim()) {
-      setError("Podaj imię i nazwisko.");
-      setIsSending(false);
-      return;
-    }
-    if (!form.from_email.value?.trim()) {
-      setError("Podaj adres email.");
-      setIsSending(false);
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.from_email.value)) {
-      setError("Podaj poprawny adres email.");
-      setIsSending(false);
-      return;
-    }
-    if (!form.message.value?.trim()) {
-      setError("Wpisz treść wiadomości.");
-      setIsSending(false);
-      return;
-    }
+    if (!form.from_name.value?.trim()) { setError("Podaj imię i nazwisko."); setIsSending(false); return; }
+    if (!form.from_email.value?.trim()) { setError("Podaj adres email."); setIsSending(false); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.from_email.value)) { setError("Podaj poprawny adres email."); setIsSending(false); return; }
+    if (!form.message.value?.trim()) { setError("Wpisz treść wiadomości."); setIsSending(false); return; }
 
     emailjs
       .sendForm(
@@ -45,23 +34,13 @@ const Contact = () => {
         form,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
       )
-      .then(() => {
-        setIsSent(true);
-        form.reset();
-      })
-      .catch((err) => {
-        setError("Wystąpił błąd podczas wysyłania. Spróbuj ponownie.");
-        console.error("EmailJS Error:", err);
-      })
+      .then(() => { setIsSent(true); form.reset(); setSelectedPackage(""); })
+      .catch((err) => { setError("Wystąpił błąd podczas wysyłania. Spróbuj ponownie."); console.error(err); })
       .finally(() => setIsSending(false));
   };
 
-  const inputCls =
-    "w-full px-4 py-3.5 rounded-xl text-[14px] text-slate-100 placeholder-slate-600 outline-none transition-all duration-200 focus:border-sky-400/50";
-  const inputStyle = {
-    background: "rgba(255,255,255,0.04)",
-    border: "1px solid rgba(255,255,255,0.08)",
-  };
+  const inputCls = "w-full px-4 py-3.5 rounded-xl text-[14px] text-slate-100 placeholder-slate-600 outline-none transition-all duration-200 focus:border-sky-400/50";
+  const inputStyle = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" };
 
   return (
     <section
@@ -79,20 +58,16 @@ const Contact = () => {
         >
           <div className="inline-flex items-center gap-2">
             <span className="h-px w-5 bg-sky-400" />
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-sky-400">
-              Kontakt
-            </span>
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-sky-400">Kontakt</span>
             <span className="h-px w-5 bg-sky-400" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
-            Umów wizytę
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center">Umów wizytę</h2>
           <p className="text-slate-500 text-[15px] text-center">
-            Napisz do nas — odpiszemy najszybciej jak to możliwe.
+            Napisz do nas — odezwiemy się.
           </p>
         </motion.div>
 
-        {/* Form / Success */}
+        {/* Form */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -105,9 +80,7 @@ const Contact = () => {
             >
               <div className="text-sky-400 text-[40px] mb-3">✓</div>
               <h3 className="text-[18px] font-bold text-slate-100 mb-2">Wiadomość wysłana!</h3>
-              <p className="text-[14px] text-slate-400">
-                Dziękujemy za kontakt. Odpiszemy najszybciej jak to możliwe.
-              </p>
+              <p className="text-[14px] text-slate-400">Dziękujemy za kontakt. Skontaktujemy się najszybciej jak to możliwe.</p>
             </div>
           ) : (
             <form ref={formRef} onSubmit={sendEmail} className="space-y-3">
@@ -127,6 +100,29 @@ const Contact = () => {
                   style={inputStyle}
                 />
               </div>
+
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Numer telefonu (opcjonalnie)"
+                className={inputCls}
+                style={inputStyle}
+              />
+
+              {/* Wybór pakietu */}
+              <select
+                name="package"
+                value={selectedPackage}
+                onChange={(e) => setSelectedPackage(e.target.value as any)}
+                className={inputCls}
+                style={{ ...inputStyle, appearance: "none" as any }}
+              >
+                <option value="" style={{ background: "#0e111d" }}>Wybierz pakiet (opcjonalnie)</option>
+                {PACKAGES.filter(p => p !== "").map((p) => (
+                  <option key={p} value={p} style={{ background: "#0e111d" }}>{p}</option>
+                ))}
+              </select>
+
               <textarea
                 name="message"
                 placeholder="Opisz swój samochód i czego potrzebujesz..."
