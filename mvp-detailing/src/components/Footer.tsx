@@ -17,18 +17,18 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#161b2d] text-slate-300 border-t border-white/10 py-12 px-6 md:px-12">
-      <div ref={ref} className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <footer className="bg-[#161b2d] text-slate-300 border-t border-white/10 py-12 2xl:py-16 px-6 md:px-12 2xl:px-24">
+      <div ref={ref} className="max-w-6xl 2xl:max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 2xl:gap-16">
 
         {/* Brand */}
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate={inView ? "show" : "hidden"}>
           <div className="flex items-center gap-2 mb-4">
             <span className="h-2 w-2 rounded-full bg-sky-400" />
-            <span className="text-[13px] font-bold tracking-[0.1em] uppercase text-slate-100">
+            <span className="text-[13px] 2xl:text-[15px] font-bold tracking-[0.1em] uppercase text-slate-100">
               MVP Detailing
             </span>
           </div>
-          <p className="text-[13px] text-slate-500 leading-relaxed">
+          <p className="text-[13px] 2xl:text-[15px] text-slate-500 leading-relaxed">
             Profesjonalna pielęgnacja Twojego pojazdu.<br />
             Pasja, precyzja i zamiłowanie do perfekcji.
           </p>
@@ -36,8 +36,8 @@ const Footer = () => {
 
         {/* Kontakt */}
         <motion.div custom={1} variants={fadeUp} initial="hidden" animate={inView ? "show" : "hidden"}>
-          <h4 className="text-[12px] font-bold tracking-[0.1em] uppercase text-slate-400 mb-5">Kontakt</h4>
-          <ul className="space-y-3 text-[13px] text-slate-500">
+          <h4 className="text-[12px] 2xl:text-[14px] font-bold tracking-[0.1em] uppercase text-slate-400 mb-5">Kontakt</h4>
+          <ul className="space-y-3 text-[13px] 2xl:text-[15px] text-slate-500">
             <li className="flex items-center gap-2.5">
               <FaPhoneAlt className="text-sky-400 text-[11px] flex-shrink-0" />
               +48 604 589 815 - Paweł
@@ -59,8 +59,8 @@ const Footer = () => {
 
         {/* Nawigacja */}
         <motion.div custom={2} variants={fadeUp} initial="hidden" animate={inView ? "show" : "hidden"}>
-          <h4 className="text-[12px] font-bold tracking-[0.1em] uppercase text-slate-400 mb-5">Nawigacja</h4>
-          <ul className="space-y-2.5 text-[13px] text-slate-500">
+          <h4 className="text-[12px] 2xl:text-[14px] font-bold tracking-[0.1em] uppercase text-slate-400 mb-5">Nawigacja</h4>
+          <ul className="space-y-2.5 text-[13px] 2xl:text-[15px] text-slate-500">
             {[
               { to: "aboutus", label: "O nas" },
               { to: "services", label: "Usługi" },
@@ -89,7 +89,7 @@ const Footer = () => {
             href="https://www.facebook.com/profile.php?id=61573451274213"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 text-[13px] text-sky-400 hover:text-sky-300 transition-colors duration-200"
+            className="inline-flex items-center gap-2.5 text-[13px] 2xl:text-[15px] text-sky-400 hover:text-sky-300 transition-colors duration-200"
           >
             <FaFacebookF />
             <span>Facebook</span>
@@ -98,7 +98,7 @@ const Footer = () => {
 
       </div>
 
-      <div className="mt-12 pt-6 text-center text-[12px] text-slate-600" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+      <div className="mt-12 pt-6 text-center text-[12px] 2xl:text-[14px] text-slate-600" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
         © {new Date().getFullYear()} MVP Detailing. Wszelkie prawa zastrzeżone.
       </div>
     </footer>

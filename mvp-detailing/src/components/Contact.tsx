@@ -39,15 +39,15 @@ const Contact = () => {
       .finally(() => setIsSending(false));
   };
 
-  const inputCls = "w-full px-4 py-3.5 rounded-xl text-[14px] text-slate-100 placeholder-slate-600 outline-none transition-all duration-200 focus:border-sky-400/50";
+  const inputCls = "w-full px-4 2xl:px-5 py-3.5 2xl:py-4 rounded-xl text-[14px] 2xl:text-[16px] text-slate-100 placeholder-slate-600 outline-none transition-all duration-200 focus:border-sky-400/50";
   const inputStyle = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" };
 
   return (
     <section
       id="contact"
-      className="bg-gradient-to-b from-[#0e111d] via-[#111523] to-[#0e111d] py-24 px-6 md:px-12"
+      className="bg-gradient-to-b from-[#0e111d] via-[#111523] to-[#0e111d] py-24 2xl:py-36 px-6 md:px-12 2xl:px-24"
     >
-      <div ref={sectionRef} className="max-w-2xl mx-auto">
+      <div ref={sectionRef} className="max-w-2xl 2xl:max-w-3xl mx-auto">
 
         {/* Badge */}
         <motion.div
@@ -58,11 +58,15 @@ const Contact = () => {
         >
           <div className="inline-flex items-center gap-2">
             <span className="h-px w-5 bg-sky-400" />
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-sky-400">Kontakt</span>
+            <span className="text-[11px] 2xl:text-[13px] font-bold tracking-[0.14em] uppercase text-sky-400">
+              Kontakt
+            </span>
             <span className="h-px w-5 bg-sky-400" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center">Umów wizytę</h2>
-          <p className="text-slate-500 text-[15px] text-center">
+          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-white text-center">
+            Umów wizytę
+          </h2>
+          <p className="text-slate-500 text-[15px] 2xl:text-[17px] text-center">
             Napisz do nas — odezwiemy się.
           </p>
         </motion.div>
@@ -143,7 +147,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSending}
-                className={`w-full py-4 rounded-xl text-[14px] font-bold tracking-wide transition-all duration-200 ${
+                className={`w-full py-4 2xl:py-5 rounded-xl text-[14px] 2xl:text-[16px] font-bold tracking-wide transition-all duration-200 ${
                   isSending
                     ? "opacity-60 cursor-wait bg-sky-400 text-[#0e111d]"
                     : "bg-sky-400 hover:bg-sky-300 text-[#0e111d] hover:-translate-y-0.5"

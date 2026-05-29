@@ -18,7 +18,7 @@ const AboutUs = () => {
     >
       <div
         ref={ref}
-        className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-8 md:gap-12 px-4"
+        className="max-w-6xl 2xl:max-w-screen-xl mx-auto grid md:grid-cols-2 items-center gap-8 md:gap-12 2xl:gap-20 px-4"
       >
         {/* Tekst */}
         <motion.div
@@ -35,16 +35,16 @@ const AboutUs = () => {
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold text-white">
             Kim jesteśmy?
           </h2>
 
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg 2xl:text-xl leading-relaxed">
             Jesteśmy Paweł i Wiktor, dwójka młodych pasjonatów motoryzacji, którzy
             postanowili połączyć swoje hobby z biznesem i stworzyć MVP Detailing —
             studio detailingu samochodowego.
           </p>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-slate-400 2xl:text-lg leading-relaxed">
             MVP Detailing to więcej niż tylko studio pielęgnacji samochodów — to
             pasja, precyzja i zamiłowanie do perfekcji. Specjalizujemy się w
             profesjonalnym detailingu, który wydobywa z Twojego auta to, co
@@ -58,7 +58,7 @@ const AboutUs = () => {
           initial="hidden"
           animate={inView ? "show" : "hidden"}
           transition={{ delay: 0.12 }}
-          className="relative w-full h-64 sm:h-72 md:h-96 rounded-2xl overflow-hidden order-1 md:order-2"
+          className="relative w-full h-64 sm:h-72 md:h-96 2xl:h-[480px] rounded-2xl overflow-hidden order-1 md:order-2"
           style={{ border: "1px solid rgba(56,189,248,0.15)" }}
         >
           <img

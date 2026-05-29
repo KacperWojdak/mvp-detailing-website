@@ -22,20 +22,20 @@ const Location = () => {
   return (
     <section
       id="location"
-      className="bg-gradient-to-b from-[#111523] via-[#0e111d] to-[#111523] py-24 px-6 md:px-12"
+      className="bg-gradient-to-b from-[#111523] via-[#0e111d] to-[#111523] py-24 2xl:py-36 px-6 md:px-12 2xl:px-24"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl 2xl:max-w-screen-xl mx-auto">
 
         {/* Badge */}
         <div className="flex flex-col items-center mb-12 gap-3">
           <div className="inline-flex items-center gap-2">
             <span className="h-px w-5 bg-sky-400" />
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-sky-400">
+            <span className="text-[11px] 2xl:text-[13px] font-bold tracking-[0.14em] uppercase text-sky-400">
               Lokalizacja
             </span>
             <span className="h-px w-5 bg-sky-400" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
+          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-white text-center">
             Nasza lokalizacja
           </h2>
         </div>
@@ -47,7 +47,7 @@ const Location = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="rounded-2xl p-7 flex flex-col gap-6 justify-between"
+            className="rounded-2xl p-7 2xl:p-10 flex flex-col gap-6 justify-between"
             style={{
               background: "rgba(255,255,255,0.04)",
               backdropFilter: "blur(12px)",
@@ -58,15 +58,15 @@ const Location = () => {
               {/* Adres */}
               <div className="flex items-start gap-4">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  className="w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}
                 >
-                  <MapPin className="w-4 h-4 text-sky-400" />
+                  <MapPin className="w-4 h-4 2xl:w-5 2xl:h-5 text-sky-400" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 mb-1">Adres</p>
-                  <p className="text-slate-200 font-medium">Wilczyce 45</p>
-                  <p className="text-slate-400 text-sm">59-223</p>
+                  <p className="text-[11px] 2xl:text-[13px] font-bold tracking-widest uppercase text-slate-500 mb-1">Adres</p>
+                  <p className="text-slate-200 font-medium 2xl:text-lg">Wilczyce 45</p>
+                  <p className="text-slate-400 text-sm 2xl:text-base">59-223</p>
                 </div>
               </div>
 
@@ -80,8 +80,8 @@ const Location = () => {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 mb-1">Godziny pracy</p>
-                  <p className="text-slate-200 font-medium">Pon – Pt: 8:00 – 18:00</p>
-                  <p className="text-slate-400 text-sm">Sob: 9:00 – 15:00</p>
+                  <p className="text-slate-200 font-medium 2xl:text-lg">Pon – Pt: 8:00 – 18:00</p>
+                  <p className="text-slate-400 text-sm 2xl:text-base">Sob: 9:00 – 15:00</p>
                 </div>
               </div>
 
@@ -95,8 +95,8 @@ const Location = () => {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold tracking-widets uppercase text-slate-500 mb-1">Telefon</p>
-                  <p className="text-slate-200 font-medium">+48 604 589 815 - Paweł</p>
-                  <p className="text-slate-200 font-medium">+48 790 590 465 - Wiktor</p>
+                  <p className="text-slate-200 font-medium 2xl:text-lg">+48 604 589 815 - Paweł</p>
+                  <p className="text-slate-200 font-medium 2xl:text-lg">+48 790 590 465 - Wiktor</p>
                 </div>
               </div>
             </div>
@@ -120,14 +120,14 @@ const Location = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
             className="rounded-2xl overflow-hidden"
-            style={{ border: "1px solid rgba(255,255,255,0.08)", minHeight: "340px" }}
+            style={{ border: "1px solid rgba(255,255,255,0.08)", minHeight: "clamp(340px, 40vh, 560px)" }}
           >
             <MapContainer
               center={position}
               zoom={15}
               scrollWheelZoom={false}
               className="w-full h-full"
-              style={{ minHeight: "340px", zIndex: 0 }}
+              style={{ minHeight: "clamp(340px, 40vh, 560px)", zIndex: 0 }}
             >
               <TileLayer
                 attribution='&copy; <a href="https://carto.com/">CARTO</a>'

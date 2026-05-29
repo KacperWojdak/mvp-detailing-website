@@ -44,7 +44,7 @@ const Hero = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-2xl">
+      <div className="relative z-10 text-center px-4 max-w-4xl">
 
         {/* Badge */}
         <div className="inline-flex items-center gap-2 mb-6 rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-1.5">
@@ -54,12 +54,12 @@ const Hero = () => {
           </span>
         </div>
 
-        <h1 className="text-4xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight tracking-tight">
+        <h1 className="text-4xl sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight tracking-tight">
           Twój samochód zasługuje na{" "}
           <span className="text-sky-400">więcej</span>
         </h1>
 
-        <p className="text-base sm:text-lg text-slate-400 mb-12 px-2 leading-relaxed">
+        <p className="text-base sm:text-lg xl:text-xl 2xl:text-2xl text-slate-400 mb-12 px-2 leading-relaxed">
           Specjalizujemy się w precyzyjnej pielęgnacji lakieru, detailingu wnętrza
           i zabezpieczeniach ceramicznych. Każde auto traktujemy z pasją i dbałością
           o każdy detal.
@@ -70,7 +70,7 @@ const Hero = () => {
             to="contact"
             smooth
             duration={600}
-            className="cursor-pointer inline-block bg-sky-400 hover:bg-sky-300 text-[#0e111d] px-8 py-3 font-bold rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base select-none"
+            className="cursor-pointer inline-block bg-sky-400 hover:bg-sky-300 text-[#0e111d] px-8 2xl:px-12 py-3 2xl:py-4 font-bold rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm sm:text-base 2xl:text-lg select-none"
           >
             Umów wizytę
           </ScrollLink>
@@ -78,7 +78,7 @@ const Hero = () => {
             to="services"
             smooth
             duration={600}
-            className="cursor-pointer inline-block border border-white/20 hover:border-sky-400/50 hover:text-sky-400 text-slate-200 px-8 py-3 font-semibold rounded-lg transition-all duration-200 text-sm sm:text-base select-none"
+            className="cursor-pointer inline-block border border-white/20 hover:border-sky-400/50 hover:text-sky-400 text-slate-200 px-8 2xl:px-12 py-3 2xl:py-4 font-semibold rounded-lg transition-all duration-200 text-sm sm:text-base 2xl:text-lg select-none"
           >
             Zobacz usługi
           </ScrollLink>

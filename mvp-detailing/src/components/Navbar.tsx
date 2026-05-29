@@ -31,11 +31,11 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4">
+      <div className="max-w-screen-2xl mx-auto flex items-center justify-between px-5 sm:px-8 2xl:px-16 py-4 2xl:py-5">
         {/* Brand */}
         <ScrollLink to="hero" smooth duration={600} className="cursor-pointer flex items-center gap-2.5 select-none" onClick={close}>
           <span className="h-2 w-2 rounded-full bg-sky-400" />
-          <span className="text-[14px] font-bold tracking-[0.1em] uppercase text-slate-100">
+          <span className="text-[14px] xl:text-[15px] 2xl:text-[17px] font-bold tracking-[0.1em] uppercase text-slate-100">
             MVP Detailing
           </span>
         </ScrollLink>
@@ -49,7 +49,7 @@ const Navbar = () => {
               smooth
               duration={600}
               offset={-60}
-              className="text-[13px] font-medium tracking-wide text-slate-400 hover:text-sky-400 cursor-pointer transition-colors duration-200"
+              className="text-[13px] xl:text-[14px] 2xl:text-[16px] font-medium tracking-wide text-slate-400 hover:text-sky-400 cursor-pointer transition-colors duration-200"
             >
               {l.label}
             </ScrollLink>
@@ -61,7 +61,7 @@ const Navbar = () => {
           to="contact"
           smooth
           duration={600}
-          className="hidden md:inline-block cursor-pointer bg-sky-400 hover:bg-sky-300 text-[#080a12] text-[12px] font-bold tracking-[0.08em] uppercase px-5 py-2 rounded-md transition-all duration-200 hover:-translate-y-0.5 select-none"
+          className="hidden md:inline-block cursor-pointer bg-sky-400 hover:bg-sky-300 text-[#080a12] text-[12px] xl:text-[13px] 2xl:text-[15px] font-bold tracking-[0.08em] uppercase px-5 2xl:px-7 py-2 2xl:py-2.5 rounded-md transition-all duration-200 hover:-translate-y-0.5 select-none"
         >
           Umów wizytę
         </ScrollLink>

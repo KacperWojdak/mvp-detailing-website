@@ -60,21 +60,23 @@ const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="bg-gradient-to-b from-[#0e111d] via-[#111523] to-[#0e111d] py-24 px-6 md:px-12"
+      className="bg-gradient-to-b from-[#0e111d] via-[#111523] to-[#0e111d] py-24 2xl:py-36 px-6 md:px-12 2xl:px-24"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl 2xl:max-w-screen-xl mx-auto">
 
         {/* Badge */}
         <div className="flex flex-col items-center mb-12 gap-3">
           <div className="inline-flex items-center gap-2">
             <span className="h-px w-5 bg-sky-400" />
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-sky-400">
+            <span className="text-[11px] 2xl:text-[13px] font-bold tracking-[0.14em] uppercase text-sky-400">
               Cennik
             </span>
             <span className="h-px w-5 bg-sky-400" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center">Pakiety usług</h2>
-          <p className="text-slate-500 text-[15px] text-center">
+          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-white text-center">
+            Pakiety usług
+          </h2>
+          <p className="text-slate-500 text-[15px] 2xl:text-[17px] text-center">
             Wybierz pakiet dopasowany do potrzeb Twojego auta.
           </p>
         </div>
@@ -88,7 +90,7 @@ const Pricing = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: i * 0.1, ease: "easeOut" }}
             whileHover={{ y: -8, boxShadow: "0 0 32px rgba(56,189,248,0.1)" }}
-            className="relative rounded-2xl p-6 flex flex-col group overflow-visible"
+            className="relative rounded-2xl p-6 2xl:p-8 flex flex-col group overflow-visible"
             style={{
               background: p.featured ? "rgba(56,189,248,0.05)" : "rgba(255,255,255,0.03)",
               backdropFilter: "blur(12px)",
@@ -120,14 +122,14 @@ const Pricing = () => {
                 </div>
               )}
 
-              <div className="text-[20px] font-bold text-slate-50 mb-1">{p.name}</div>
-              <div className="text-[12px] text-slate-500 mb-6 leading-snug">{p.desc}</div>
+              <div className="text-[20px] 2xl:text-[22px] font-bold text-slate-50 mb-1">{p.name}</div>
+              <div className="text-[12px] 2xl:text-[14px] text-slate-500 mb-6 leading-snug">{p.desc}</div>
 
               <ul className="flex-1 space-y-0 mb-6">
                 {p.items.map((item, j) => (
                   <li
                     key={j}
-                    className="flex items-center justify-between py-2.5 text-[13px] border-b border-white/[0.04] last:border-none"
+                    className="flex items-center justify-between py-2.5 text-[13px] 2xl:text-[15px] border-b border-white/[0.04] last:border-none"
                   >
                     <span className="flex items-center gap-2 text-slate-400">
                       <Check className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
@@ -143,7 +145,7 @@ const Pricing = () => {
                 style={{ borderTop: "1px solid rgba(56,189,248,0.15)" }}
               >
                 <span className="text-[10px] font-bold tracking-widest uppercase text-slate-600">Łącznie</span>
-                <span className="text-[20px] font-extrabold text-slate-50">{p.total}</span>
+                <span className="text-[20px] 2xl:text-[24px] font-extrabold text-slate-50">{p.total}</span>
               </div>
 
               <ScrollLink
@@ -151,7 +153,7 @@ const Pricing = () => {
                 smooth
                 duration={700}
                 onClick={() => setSelectedPackage(p.name as any)}
-                className={`block text-center text-[13px] font-semibold py-3 rounded-lg cursor-pointer transition-all duration-200 select-none ${
+                className={`block text-center text-[13px] 2xl:text-[15px] font-semibold py-3 2xl:py-4 rounded-lg cursor-pointer transition-all duration-200 select-none ${
                   p.featured
                     ? "bg-sky-400 text-[#0e111d] hover:bg-sky-300"
                     : "bg-white/5 border border-white/10 text-slate-300 hover:border-sky-400/40 hover:text-sky-400"
