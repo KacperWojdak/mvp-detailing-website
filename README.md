@@ -87,4 +87,4 @@ Responsywna, nowoczesna strona dla studia detailingu - MVP Detailing, prezentuj�
 
 ## 📜 Licencja
 
-MIT License – szczegóły w pliku [LICENSE](LICENSE).
+MIT License
