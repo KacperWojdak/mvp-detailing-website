@@ -8,8 +8,11 @@ import Location from "./components/Location";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import { useApplyTheme } from "./hooks/useApplyTheme";
 
 function App() {
+  useApplyTheme();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
