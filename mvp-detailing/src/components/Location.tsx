@@ -22,20 +22,20 @@ const Location = () => {
   return (
     <section
       id="location"
-      className="bg-gradient-to-b from-[#111523] via-[#0e111d] to-[#111523] py-24 2xl:py-36 px-6 md:px-12 2xl:px-24"
+      className="dark:bg-gradient-to-b dark:from-[#111523] dark:via-[#0e111d] dark:to-[#111523] bg-gradient-to-b from-[#e8f5ff] via-[#f0f7ff] to-[#e8f5ff] py-24 2xl:py-36 px-6 md:px-12 2xl:px-24"
     >
       <div className="max-w-6xl 2xl:max-w-screen-xl mx-auto">
 
         {/* Badge */}
         <div className="flex flex-col items-center mb-12 gap-3">
           <div className="inline-flex items-center gap-2">
-            <span className="h-px w-5 bg-sky-400" />
-            <span className="text-[11px] 2xl:text-[13px] font-bold tracking-[0.14em] uppercase text-sky-400">
+            <span className="h-px w-5 dark:bg-sky-400 bg-[#0050d8]" />
+            <span className="text-[11px] 2xl:text-[13px] font-bold tracking-[0.14em] uppercase dark:text-sky-400 text-[#0050d8]">
               Lokalizacja
             </span>
-            <span className="h-px w-5 bg-sky-400" />
+            <span className="h-px w-5 dark:bg-sky-400 bg-[#0050d8]" />
           </div>
-          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-white text-center">
+          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold dark:text-white text-slate-900 text-center">
             Nasza lokalizacja
           </h2>
         </div>
@@ -47,56 +47,43 @@ const Location = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="rounded-2xl p-7 2xl:p-10 flex flex-col gap-6 justify-between"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.08)",
-            }}
+            className="rounded-2xl p-7 2xl:p-10 flex flex-col gap-6 justify-between dark:[background:rgba(255,255,255,0.04)] [background:rgba(255,255,255,0.6)] dark:[border:1px_solid_rgba(255,255,255,0.08)] [border:1px_solid_rgba(0,80,216,0.15)]"
+            style={{ backdropFilter: "blur(12px)" }}
           >
             <div className="space-y-5">
               {/* Adres */}
               <div className="flex items-start gap-4">
-                <div
-                  className="w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}
-                >
-                  <MapPin className="w-4 h-4 2xl:w-5 2xl:h-5 text-sky-400" />
+                <div className="w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center flex-shrink-0 dark:[background:rgba(56,189,248,0.1)] [background:rgba(0,80,216,0.08)] dark:[border:1px_solid_rgba(56,189,248,0.2)] [border:1px_solid_rgba(0,80,216,0.2)]">
+                  <MapPin className="w-4 h-4 2xl:w-5 2xl:h-5 dark:text-sky-400 text-[#0050d8]" />
                 </div>
                 <div>
                   <p className="text-[11px] 2xl:text-[13px] font-bold tracking-widest uppercase text-slate-500 mb-1">Adres</p>
-                  <p className="text-slate-200 font-medium 2xl:text-lg">Wilczyce 45</p>
-                  <p className="text-slate-400 text-sm 2xl:text-base">59-223</p>
+                  <p className="dark:text-slate-200 text-slate-800 font-medium 2xl:text-lg">Wilczyce 45</p>
+                  <p className="dark:text-slate-400 text-slate-600 text-sm 2xl:text-base">59-223</p>
                 </div>
               </div>
 
               {/* Godziny */}
               <div className="flex items-start gap-4">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}
-                >
-                  <Clock className="w-4 h-4 text-sky-400" />
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 dark:[background:rgba(56,189,248,0.1)] [background:rgba(0,80,216,0.08)] dark:[border:1px_solid_rgba(56,189,248,0.2)] [border:1px_solid_rgba(0,80,216,0.2)]">
+                  <Clock className="w-4 h-4 dark:text-sky-400 text-[#0050d8]" />
                 </div>
                 <div>
                   <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 mb-1">Godziny pracy</p>
-                  <p className="text-slate-200 font-medium 2xl:text-lg">Pon – Pt: 8:00 – 18:00</p>
-                  <p className="text-slate-400 text-sm 2xl:text-base">Sob: 9:00 – 15:00</p>
+                  <p className="dark:text-slate-200 text-slate-800 font-medium 2xl:text-lg">Pon – Pt: 8:00 – 18:00</p>
+                  <p className="dark:text-slate-400 text-slate-600 text-sm 2xl:text-base">Sob: 9:00 – 15:00</p>
                 </div>
               </div>
 
               {/* Telefon */}
               <div className="flex items-start gap-4">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.2)" }}
-                >
-                  <Phone className="w-4 h-4 text-sky-400" />
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 dark:[background:rgba(56,189,248,0.1)] [background:rgba(0,80,216,0.08)] dark:[border:1px_solid_rgba(56,189,248,0.2)] [border:1px_solid_rgba(0,80,216,0.2)]">
+                  <Phone className="w-4 h-4 dark:text-sky-400 text-[#0050d8]" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold tracking-widets uppercase text-slate-500 mb-1">Telefon</p>
-                  <p className="text-slate-200 font-medium 2xl:text-lg">+48 604 589 815 - Paweł</p>
-                  <p className="text-slate-200 font-medium 2xl:text-lg">+48 790 590 465 - Wiktor</p>
+                  <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 mb-1">Telefon</p>
+                  <p className="dark:text-slate-200 text-slate-800 font-medium 2xl:text-lg">+48 604 589 815 - Paweł</p>
+                  <p className="dark:text-slate-200 text-slate-800 font-medium 2xl:text-lg">+48 790 590 465 - Wiktor</p>
                 </div>
               </div>
             </div>
@@ -106,8 +93,7 @@ const Location = () => {
               href={`https://www.google.com/maps?daddr=${position[0]},${position[1]}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-[14px] text-sky-400 transition-all duration-200 hover:bg-sky-400 hover:text-[#0e111d]"
-              style={{ border: "1px solid rgba(56,189,248,0.3)" }}
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-[14px] dark:text-sky-400 text-[#0050d8] transition-all duration-200 dark:hover:bg-sky-400 hover:bg-[#0050d8] dark:hover:text-[#0e111d] hover:text-white dark:[border:1px_solid_rgba(56,189,248,0.3)] [border:1px_solid_rgba(0,80,216,0.3)]"
             >
               <Navigation className="w-4 h-4" />
               Otwórz w Google Maps
@@ -119,8 +105,8 @@ const Location = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
-            className="rounded-2xl overflow-hidden"
-            style={{ border: "1px solid rgba(255,255,255,0.08)", minHeight: "clamp(340px, 40vh, 560px)" }}
+            className="rounded-2xl overflow-hidden dark:[border:1px_solid_rgba(255,255,255,0.08)] [border:1px_solid_rgba(0,80,216,0.15)]"
+            style={{ minHeight: "clamp(340px, 40vh, 560px)" }}
           >
             <MapContainer
               center={position}

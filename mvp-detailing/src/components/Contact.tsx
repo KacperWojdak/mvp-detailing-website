@@ -39,13 +39,12 @@ const Contact = () => {
       .finally(() => setIsSending(false));
   };
 
-  const inputCls = "w-full px-4 2xl:px-5 py-3.5 2xl:py-4 rounded-xl text-[14px] 2xl:text-[16px] text-slate-100 placeholder-slate-600 outline-none transition-all duration-200 focus:border-sky-400/50";
-  const inputStyle = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" };
+  const inputCls = "w-full px-4 2xl:px-5 py-3.5 2xl:py-4 rounded-xl text-[14px] 2xl:text-[16px] dark:text-slate-100 text-slate-800 dark:placeholder-slate-600 placeholder-slate-500 outline-none transition-all duration-200 dark:[background:rgba(255,255,255,0.04)] [background:rgba(255,255,255,0.7)] dark:[border:1px_solid_rgba(255,255,255,0.08)] [border:1px_solid_rgba(0,80,216,0.25)] dark:focus:[border-color:rgba(56,189,248,0.5)] focus:[border-color:rgba(0,80,216,0.5)]";
 
   return (
     <section
       id="contact"
-      className="bg-gradient-to-b from-[#0e111d] via-[#111523] to-[#0e111d] py-24 2xl:py-36 px-6 md:px-12 2xl:px-24"
+      className="dark:bg-gradient-to-b dark:from-[#0e111d] dark:via-[#111523] dark:to-[#0e111d] bg-gradient-to-b from-[#f0f7ff] via-[#e8f5ff] to-[#f0f7ff] py-24 2xl:py-36 px-6 md:px-12 2xl:px-24"
     >
       <div ref={sectionRef} className="max-w-2xl 2xl:max-w-3xl mx-auto">
 
@@ -57,16 +56,16 @@ const Contact = () => {
           className="flex flex-col items-center mb-12 gap-3"
         >
           <div className="inline-flex items-center gap-2">
-            <span className="h-px w-5 bg-sky-400" />
-            <span className="text-[11px] 2xl:text-[13px] font-bold tracking-[0.14em] uppercase text-sky-400">
+            <span className="h-px w-5 dark:bg-sky-400 bg-[#0050d8]" />
+            <span className="text-[11px] 2xl:text-[13px] font-bold tracking-[0.14em] uppercase dark:text-sky-400 text-[#0050d8]">
               Kontakt
             </span>
-            <span className="h-px w-5 bg-sky-400" />
+            <span className="h-px w-5 dark:bg-sky-400 bg-[#0050d8]" />
           </div>
-          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-white text-center">
+          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold dark:text-white text-slate-900 text-center">
             Umów wizytę
           </h2>
-          <p className="text-slate-500 text-[15px] 2xl:text-[17px] text-center">
+          <p className="dark:text-slate-500 text-slate-600 text-[15px] 2xl:text-[17px] text-center">
             Napisz do nas — odezwiemy się.
           </p>
         </motion.div>
@@ -82,9 +81,9 @@ const Contact = () => {
               className="rounded-2xl p-10 text-center"
               style={{ background: "rgba(56,189,248,0.06)", border: "1px solid rgba(56,189,248,0.2)" }}
             >
-              <div className="text-sky-400 text-[40px] mb-3">✓</div>
-              <h3 className="text-[18px] font-bold text-slate-100 mb-2">Wiadomość wysłana!</h3>
-              <p className="text-[14px] text-slate-400">Dziękujemy za kontakt. Skontaktujemy się najszybciej jak to możliwe.</p>
+              <div className="dark:text-sky-400 text-[#0050d8] text-[40px] mb-3">✓</div>
+              <h3 className="text-[18px] font-bold dark:text-slate-100 text-slate-900 mb-2">Wiadomość wysłana!</h3>
+              <p className="text-[14px] dark:text-slate-400 text-slate-600">Dziękujemy za kontakt. Skontaktujemy się najszybciej jak to możliwe.</p>
             </div>
           ) : (
             <form ref={formRef} onSubmit={sendEmail} className="space-y-3">
@@ -94,14 +93,12 @@ const Contact = () => {
                   name="from_name"
                   placeholder="Imię i nazwisko"
                   className={inputCls}
-                  style={inputStyle}
                 />
                 <input
                   type="email"
                   name="from_email"
                   placeholder="Adres e-mail"
                   className={inputCls}
-                  style={inputStyle}
                 />
               </div>
 
@@ -110,20 +107,18 @@ const Contact = () => {
                 name="phone"
                 placeholder="Numer telefonu (opcjonalnie)"
                 className={inputCls}
-                style={inputStyle}
               />
 
-              {/* Wybór pakietu */}
               <select
                 name="package"
                 value={selectedPackage}
                 onChange={(e) => setSelectedPackage(e.target.value as any)}
                 className={inputCls}
-                style={{ ...inputStyle, appearance: "none" as any }}
+                style={{ appearance: "none" }}
               >
-                <option value="" style={{ background: "#0e111d" }}>Wybierz pakiet (opcjonalnie)</option>
+                <option value="" className="dark:bg-[#0e111d] bg-[#e8f5ff]">Wybierz pakiet (opcjonalnie)</option>
                 {PACKAGES.filter(p => p !== "").map((p) => (
-                  <option key={p} value={p} style={{ background: "#0e111d" }}>{p}</option>
+                  <option key={p} value={p} className="dark:bg-[#0e111d] bg-[#e8f5ff]">{p}</option>
                 ))}
               </select>
 
@@ -132,7 +127,6 @@ const Contact = () => {
                 placeholder="Opisz swój samochód i czego potrzebujesz..."
                 rows={5}
                 className={`${inputCls} resize-none`}
-                style={inputStyle}
               />
 
               {error && (
@@ -149,8 +143,8 @@ const Contact = () => {
                 disabled={isSending}
                 className={`w-full py-4 2xl:py-5 rounded-xl text-[14px] 2xl:text-[16px] font-bold tracking-wide transition-all duration-200 ${
                   isSending
-                    ? "opacity-60 cursor-wait bg-sky-400 text-[#0e111d]"
-                    : "bg-sky-400 hover:bg-sky-300 text-[#0e111d] hover:-translate-y-0.5"
+                    ? "opacity-60 cursor-wait dark:bg-sky-400 bg-[#0050d8] dark:text-[#0e111d] text-white"
+                    : "dark:bg-sky-400 bg-[#0050d8] dark:hover:bg-sky-300 hover:bg-[#0040b8] dark:text-[#0e111d] text-white hover:-translate-y-0.5"
                 }`}
               >
                 {isSending ? "Wysyłanie..." : "Wyślij wiadomość →"}

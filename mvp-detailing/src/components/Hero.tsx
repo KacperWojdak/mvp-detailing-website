@@ -67,7 +67,7 @@ const Hero = () => {
           <span className="dark:text-sky-400 text-[#0050d8]">więcej</span>
         </h1>
 
-        <p className="text-base sm:text-lg xl:text-xl 2xl:text-2xl dark:text-slate-400 text-slate-600 mb-12 px-2 leading-relaxed">
+        <p className="text-base sm:text-lg xl:text-xl 2xl:text-2xl dark:text-white text-black mb-12 px-2 leading-relaxed">
           Specjalizujemy się w precyzyjnej pielęgnacji lakieru, detailingu wnętrza
           i zabezpieczeniach ceramicznych. Każde auto traktujemy z pasją i dbałością
           o każdy detal.
