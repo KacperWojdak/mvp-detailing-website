@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { usePricingStore } from "../store/usePricingStore";
 
 const PACKAGES = ["", "Basic", "Premium", "Elite", "Wycena indywidualna"];
+const COOLDOWN_MS = 5 * 60 * 1000;
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -15,12 +16,30 @@ const Contact = () => {
 
   const { selectedPackage, setSelectedPackage } = usePricingStore();
 
+  const canSend = () => {
+    const last = localStorage.getItem("mvp_last_sent");
+    if (!last) return true;
+    return Date.now() - parseInt(last) > COOLDOWN_MS;
+  };
+
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
     setError("");
 
+    if (!canSend()) {
+    setError("Możesz wysłać kolejną wiadomość dopiero za kilka minut.");
+    setIsSending(false);
+    return;
+    }
+    
     const form = formRef.current!;
+    
+    if ((form.elements.namedItem("website") as HTMLInputElement)?.value)  {
+    setIsSent(true);
+    setIsSending(false);
+    return;
+}
 
     if (!form.from_name.value?.trim()) { setError("Podaj imię i nazwisko."); setIsSending(false); return; }
     if (!form.from_email.value?.trim()) { setError("Podaj adres email."); setIsSending(false); return; }
@@ -34,7 +53,7 @@ const Contact = () => {
         form,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
       )
-      .then(() => { setIsSent(true); form.reset(); setSelectedPackage(""); })
+      .then(() => { setIsSent(true); form.reset(); setSelectedPackage(""); localStorage.setItem("mvp_last_sent", Date.now().toString()); })
       .catch((err) => { setError("Wystąpił błąd podczas wysyłania. Spróbuj ponownie."); console.error(err); })
       .finally(() => setIsSending(false));
   };
@@ -87,6 +106,15 @@ const Contact = () => {
             </div>
           ) : (
             <form ref={formRef} onSubmit={sendEmail} className="space-y-3">
+              {/* Honeypot */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <input
                   type="text"
